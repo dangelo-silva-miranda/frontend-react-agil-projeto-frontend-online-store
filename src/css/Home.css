@@ -1,0 +1,13 @@
+.store {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.left-content {
+  width: 30%;
+}
+
+.right-content {
+  width: 65%;
+}
