@@ -1,6 +1,6 @@
 import React from 'react';
 
-class List extends React.Component {
+class InputSearch extends React.Component {
   render() {
     return (
       <section>
@@ -13,4 +13,4 @@ class List extends React.Component {
   }
 }
 
-export default List;
+export default InputSearch;
