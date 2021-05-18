@@ -1,0 +1,10 @@
+.cart-icon {
+  margin-top: 8%;
+  width: 55%;
+}
+
+.container-cart-button {
+  align-items: center;
+  display: flex;
+  width: 8%;
+}

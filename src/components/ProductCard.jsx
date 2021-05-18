@@ -12,8 +12,12 @@ class ProductCard extends React.Component {
         <div className="product-title-section">
           <h2 className="product-title">{ title }</h2>
         </div>
-        <img src={ thumbnail } alt="Product" />
-        <h3 className="product-price">{ price }</h3>
+        <img className="product-img" src={ thumbnail } alt="Product" />
+        <h3 className="product-price">
+          R$
+          {' '}
+          { price }
+        </h3>
       </div>
     );
   }

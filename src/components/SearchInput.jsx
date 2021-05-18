@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import '../css/Searchinput.css';
+
 class SearchInput extends React.Component {
   render() {
     const { handleChange, updateSearch } = this.props;

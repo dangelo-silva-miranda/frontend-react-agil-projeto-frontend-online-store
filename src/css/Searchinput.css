@@ -1,0 +1,15 @@
+.search-bar {
+  width: 100%;
+}
+
+.search-bar-input {
+  height: 30%;
+  margin: 1%;
+  padding: 1%;
+  width: 80%;
+}
+
+.search-bar-btn {
+  height: 70%;
+  width: 15%;
+}
