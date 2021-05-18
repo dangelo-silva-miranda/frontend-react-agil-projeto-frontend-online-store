@@ -31,6 +31,12 @@ export async function getProductsFromQuery(query) {
   return Promise.resolve(results); // retorna uma promise com os dados de resultado
 }
 
+export async function getProductsFromCategory(category) {
+  const results = await fetchAPI(`https://api.mercadolibre.com/sites/MLB/search?category=${category}`); // busca o resultado de uma Promise de consulta usando a api do mercado livre
+
+  return Promise.resolve(results); // retorna uma promise com os dados de resultado
+}
+
 /*
   Essa função recebe o id de uma categoria e um termo e retorna uma lista de itens desta categoria e que tenham o termo informado
 
@@ -40,6 +46,10 @@ export async function getProductsFromQuery(query) {
 export async function getProductsFromCategoryAndQuery(categoryId, query) {
   if (categoryId === '') {
     getProductsFromQuery(query);
+  }
+
+  if (!query) {
+    getProductsFromCategory(categoryId);
   }
 
   const results = await fetchAPI(`https://api.mercadolibre.com/sites/MLB/search?category=${categoryId}&q=${query}`); // busca o resultado de uma Promise de consulta usando a api do mercado livre

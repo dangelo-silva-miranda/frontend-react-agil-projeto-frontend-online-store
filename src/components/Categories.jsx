@@ -27,10 +27,15 @@ class Categories extends Component {
 
   render() {
     const { categories } = this.state;
+    const { getCategory } = this.props;
     return (
       <div>
         {categories.map((category) => (
-          <Category key={ category.id } category={ category } />
+          <Category
+            getCategory={ getCategory }
+            key={ category.id }
+            category={ category }
+          />
         ))}
       </div>
     );
