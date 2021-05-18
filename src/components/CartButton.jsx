@@ -10,8 +10,7 @@ class CartButton extends Component {
     return (
       <div className="container-cart-button">
         <Link data-testid="shopping-cart-button" to="/cart">
-          {/* <button type="button" className="">Teste</button> */}
-          <img className="cart-icon" src={ CartIcon } alt="teste" />
+          <img className="cart-icon" src={ CartIcon } alt="botão carrinho de compras" />
         </Link>
       </div>
     );
