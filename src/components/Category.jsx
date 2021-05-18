@@ -23,6 +23,7 @@ class Category extends Component {
 
 Category.propTypes = {
   category: PropTypes.shape().isRequired,
+  getCategory: PropTypes.func.isRequired,
 };
 
 export default Category;
