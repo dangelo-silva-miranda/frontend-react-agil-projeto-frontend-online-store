@@ -5,7 +5,7 @@ import '../css/ProductCard.css';
 
 class ProductCard extends React.Component {
   render() {
-    const { price, title, thumbnail } = this.props;
+    const { product: { id, price, title, thumbnail }, addToCart } = this.props;
 
     return (
       <div data-testid="product" className="product-card">
@@ -18,6 +18,7 @@ class ProductCard extends React.Component {
           {' '}
           { price }
         </h3>
+        <button type="button" onClick={ () => addToCart(id) }>Adicionar ao Carrinho</button>
       </div>
     );
   }

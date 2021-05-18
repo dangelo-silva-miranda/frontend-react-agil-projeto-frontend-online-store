@@ -16,11 +16,26 @@ class Home extends React.Component {
     super(props);
 
     this.state = {
+      cart: [],
       products: [],
       searchInput: '',
       searchStatus: false,
       category: '',
     };
+  }
+
+  readCart = () => JSON.parse(localStorage.getItem('movies'));
+
+  saveCart = (cart) => localStorage.setItem('cart', JSON.stringify(cart));
+
+  addToCart = async (id) => {
+    const { products, cart } = this.state;
+
+    const result = products.find((product) => product.id === id);
+
+    this.setState({ cart: [...cart, result] });
+
+    this.saveCart(cart);
   }
 
   handleChange = ({ target: { name, value } }) => {
@@ -58,7 +73,7 @@ class Home extends React.Component {
 
   render() {
     const { searchStatus, products } = this.state;
-    const { handleChange, updateSearch, getCategory } = this;
+    const { handleChange, updateSearch, getCategory, addToCart } = this;
 
     return (
       <div className="store">
@@ -73,7 +88,13 @@ class Home extends React.Component {
             />
             <CartButton />
           </div>
-          { !searchStatus ? <InitialMessage /> : <ProductList products={ products } /> }
+          { !searchStatus
+            ? <InitialMessage />
+            : <ProductList
+              products={ products }
+              addToCart={ addToCart }
+            />
+          }
         </section>
       </div>
     );
