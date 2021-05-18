@@ -1,13 +1,15 @@
 import React from 'react';
 
-import { getProductsFromCategoryAndQuery } from '../../services/api';
+import { getProductsFromCategoryAndQuery } from '../services/api';
 
-import Categories from '../../components/Categories';
-import InitialMessage from '../../components/InitialMessage';
-import SearchInput from '../../components/SearchInput';
-import ProductList from '../../components/ProductList';
+import Categories from '../components/Categories';
+import InitialMessage from '../components/InitialMessage';
+import SearchInput from '../components/SearchInput';
+import ProductList from '../components/ProductList';
 
-import '../../css/Home.css';
+import '../css/Home.css';
+
+import CartButton from '../components/CartButton';
 
 class Home extends React.Component {
   constructor(props) {
@@ -49,10 +51,13 @@ class Home extends React.Component {
           <Categories />
         </section>
         <section className="right-content">
-          <SearchInput
-            handleChange={ handleChange }
-            updateSearch={ updateSearch }
-          />
+          <div className="header">
+            <SearchInput
+              handleChange={ handleChange }
+              updateSearch={ updateSearch }
+            />
+            <CartButton />
+          </div>
           { !searchStatus ? <InitialMessage /> : <ProductList products={ products } /> }
         </section>
       </div>

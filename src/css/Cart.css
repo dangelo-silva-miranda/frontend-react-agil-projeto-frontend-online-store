@@ -1,0 +1,23 @@
+.container-cart {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.back-arrow-icon {
+  width: 3%;
+}
+
+.empty-box-icon {
+  margin: 7% 0 1%;
+  width: 25%;
+}
+
+h1 {
+  margin-top: 2%;
+}
+
+a {
+  padding: 1% 2%;
+}
