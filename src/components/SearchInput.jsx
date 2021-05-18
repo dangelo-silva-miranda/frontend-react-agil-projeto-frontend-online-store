@@ -14,6 +14,7 @@ class SearchInput extends React.Component {
           onChange={ handleChange }
           className="search-bar-input"
           type="text"
+          name="searchInput"
         />
         <button
           data-testid="query-button"

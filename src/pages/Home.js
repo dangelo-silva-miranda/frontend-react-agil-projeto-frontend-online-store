@@ -23,9 +23,24 @@ class Home extends React.Component {
     };
   }
 
-  handleChange = ({ target }) => {
+  handleChange = ({ target: { name, value } }) => {
     this.setState({
-      searchInput: target.value,
+      [name]: value,
+    });
+  }
+
+  getCategory = (id) => {
+    this.setState({ category: id });
+    this.updateCategory();
+  }
+
+  updateCategory = async () => {
+    const { category } = this.state;
+    const { results } = await getProductsFromCategoryAndQuery(category);
+
+    this.setState({
+      searchStatus: true,
+      products: results,
     });
   }
 
@@ -43,12 +58,12 @@ class Home extends React.Component {
 
   render() {
     const { searchStatus, products } = this.state;
-    const { handleChange, updateSearch } = this;
+    const { handleChange, updateSearch, getCategory } = this;
 
     return (
       <div className="store">
         <section className="left-content">
-          <Categories />
+          <Categories getCategory={ getCategory } />
         </section>
         <section className="right-content">
           <div className="header">
