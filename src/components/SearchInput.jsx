@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import '../css/Searchinput.css';
+import '../css/SearchInput.css';
 
 class SearchInput extends React.Component {
   render() {

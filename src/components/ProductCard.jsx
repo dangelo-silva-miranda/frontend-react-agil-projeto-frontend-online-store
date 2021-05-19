@@ -5,7 +5,7 @@ import '../css/ProductCard.css';
 
 class ProductCard extends React.Component {
   render() {
-    const { price, title, thumbnail } = this.props;
+    const { product: { id, price, title, thumbnail }, addToCart } = this.props;
 
     return (
       <div data-testid="product" className="product-card">
@@ -18,7 +18,13 @@ class ProductCard extends React.Component {
           {' '}
           { price.toFixed(2) }
         </h3>
-        <button type="button">Adicionar ao Carrinho</button>
+        <button
+          data-testid="product-add-to-cart"
+          type="button"
+          onClick={ () => addToCart(id) }
+        >
+          Adicionar ao Carrinho
+        </button>
       </div>
     );
   }

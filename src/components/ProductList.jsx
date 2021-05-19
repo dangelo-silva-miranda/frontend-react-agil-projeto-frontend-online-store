@@ -8,22 +8,16 @@ import '../css/ProductList.css';
 
 class ProductList extends React.Component {
   render() {
-    const { products } = this.props;
+    const { products, addToCart } = this.props;
 
     return (
       <div className="products">
         { products.length
-          ? products.map(({
-            id,
-            price,
-            title,
-            thumbnail,
-          }) => (
+          ? products.map((product) => (
             <ProductCard
-              key={ id }
-              price={ price }
-              title={ title }
-              thumbnail={ thumbnail }
+              key={ product.id }
+              product={ product }
+              addToCart={ addToCart }
             />))
           : <ProductNotFound /> }
       </div>
@@ -35,6 +29,7 @@ ProductList.propTypes = {
   products: PropTypes.arrayOf(
     PropTypes.shape(),
   ).isRequired,
+  addToCart: PropTypes.func.isRequired,
 };
 
 export default ProductList;

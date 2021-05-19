@@ -24,7 +24,30 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
-    console.log('didMount');
+    localStorage.setItem('cart', '[]');
+  }
+
+  readCart = () => JSON.parse(localStorage.getItem('cart'));
+
+  saveCart = (cart) => localStorage.setItem('cart', JSON.stringify(cart));
+
+  addToCart = async (id) => {
+    const { products } = this.state;
+
+    const cart = this.readCart();
+    console.log(cart);
+    const oldProduct = cart.find((product) => product.id === id);
+
+    if (cart.length && oldProduct) {
+      const index = cart.indexOf(oldProduct);
+      oldProduct.quantity += 1;
+      cart[index] = oldProduct;
+      this.saveCart(cart);
+    } else {
+      const newProductToCart = products.find((product) => product.id === id);
+      newProductToCart.quantity = 1;
+      this.saveCart([...cart, newProductToCart]);
+    }
   }
 
   handleChange = ({ target: { name, value } }) => {
@@ -59,7 +82,7 @@ class Home extends React.Component {
 
   render() {
     const { searchStatus, products } = this.state;
-    const { handleChange, getProductsBySearch, getProductsByCategory } = this;
+    const { handleChange, getProductsBySearch, getProductsByCategory, addToCart } = this;
 
     return (
       <div className="store">
@@ -74,7 +97,9 @@ class Home extends React.Component {
             />
             <CartButton />
           </div>
-          { !searchStatus ? <InitialMessage /> : <ProductList products={ products } /> }
+          { !searchStatus
+            ? <InitialMessage />
+            : <ProductList products={ products } addToCart={ addToCart } /> }
         </section>
       </div>
     );
