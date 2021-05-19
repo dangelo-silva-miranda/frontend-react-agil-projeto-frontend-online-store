@@ -24,7 +24,7 @@ class Home extends React.Component {
     };
   }
 
-  readCart = () => JSON.parse(localStorage.getItem('movies'));
+  readCart = () => JSON.parse(localStorage.getItem('cart'));
 
   saveCart = (cart) => localStorage.setItem('cart', JSON.stringify(cart));
 
@@ -33,9 +33,9 @@ class Home extends React.Component {
 
     const result = products.find((product) => product.id === id);
 
-    this.setState({ cart: [...cart, result] });
+    this.saveCart([...cart, result]);
 
-    this.saveCart(cart);
+    this.setState({ cart: [...cart, result] });
   }
 
   handleChange = ({ target: { name, value } }) => {
@@ -90,11 +90,7 @@ class Home extends React.Component {
           </div>
           { !searchStatus
             ? <InitialMessage />
-            : <ProductList
-              products={ products }
-              addToCart={ addToCart }
-            />
-          }
+            : <ProductList products={ products } addToCart={ addToCart } /> }
         </section>
       </div>
     );
