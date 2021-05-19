@@ -23,31 +23,55 @@ class Home extends React.Component {
     };
   }
 
+  componentDidMount() {
+    localStorage.setItem('cart', '[]');
+  }
+
+  readCart = () => JSON.parse(localStorage.getItem('cart'));
+
+  saveCart = (cart) => localStorage.setItem('cart', JSON.stringify(cart));
+
+  addToCart = async (id) => {
+    const { products } = this.state;
+
+    const cart = this.readCart();
+    console.log(cart);
+    const oldProduct = cart.find((product) => product.id === id);
+
+    if (cart.length && oldProduct) {
+      const index = cart.indexOf(oldProduct);
+      oldProduct.quantity += 1;
+      cart[index] = oldProduct;
+      this.saveCart(cart);
+    } else {
+      const newProductToCart = products.find((product) => product.id === id);
+      newProductToCart.quantity = 1;
+      this.saveCart([...cart, newProductToCart]);
+    }
+  }
+
   handleChange = ({ target: { name, value } }) => {
+    console.log('change');
     this.setState({
       [name]: value,
     });
   }
 
-  getCategory = (id) => {
-    this.setState({ category: id });
-    this.updateCategory();
-  }
-
-  updateCategory = async () => {
-    const { category } = this.state;
-    const { results } = await getProductsFromCategoryAndQuery(category);
+  getProductsByCategory = async (id) => {
+    const { results } = await getProductsFromCategoryAndQuery(id);
 
     this.setState({
       searchStatus: true,
       products: results,
+      category: id,
+      searchInput: '',
     });
   }
 
-  updateSearch = async (event) => {
+  getProductsBySearch = async (event) => {
     event.preventDefault();
 
-    const { category, searchInput } = this.state;
+    const { searchInput, category } = this.state;
     const { results } = await getProductsFromCategoryAndQuery(category, searchInput);
 
     this.setState({
@@ -58,22 +82,24 @@ class Home extends React.Component {
 
   render() {
     const { searchStatus, products } = this.state;
-    const { handleChange, updateSearch, getCategory } = this;
+    const { handleChange, getProductsBySearch, getProductsByCategory, addToCart } = this;
 
     return (
       <div className="store">
         <section className="left-content">
-          <Categories getCategory={ getCategory } />
+          <Categories getProductsByCategory={ getProductsByCategory } />
         </section>
         <section className="right-content">
           <div className="header">
             <SearchInput
               handleChange={ handleChange }
-              updateSearch={ updateSearch }
+              getProductsBySearch={ getProductsBySearch }
             />
             <CartButton />
           </div>
-          { !searchStatus ? <InitialMessage /> : <ProductList products={ products } /> }
+          { !searchStatus
+            ? <InitialMessage />
+            : <ProductList products={ products } addToCart={ addToCart } /> }
         </section>
       </div>
     );

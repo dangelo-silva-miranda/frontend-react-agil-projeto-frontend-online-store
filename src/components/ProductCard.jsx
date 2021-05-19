@@ -6,7 +6,9 @@ import '../css/ProductCard.css';
 
 class ProductCard extends React.Component {
   render() {
-    const { product: { price, title, thumbnail, id } } = this.props;
+
+    const { product: { id, price, title, thumbnail }, addToCart } = this.props;
+
 
     return (
       <Link
@@ -16,18 +18,22 @@ class ProductCard extends React.Component {
           state: { title } } }
         className="product-card"
       >
-        <div data-testid="product">
-          <div className="product-title-section">
-            <h2 className="product-title">{ title }</h2>
-          </div>
-          <img className="product-img" src={ thumbnail } alt="Product" />
-          <h3 className="product-price">
-            R$
-            {' '}
-            { price }
-          </h3>
-        </div>
       </Link>
+
+        <img className="product-img" src={ thumbnail } alt="Product" />
+        <h3 className="product-price">
+          R$
+          {' '}
+          { price.toFixed(2) }
+        </h3>
+        <button
+          data-testid="product-add-to-cart"
+          type="button"
+          onClick={ () => addToCart(id) }
+        >
+          Adicionar ao Carrinho
+        </button>
+      </div>
     );
   }
 }

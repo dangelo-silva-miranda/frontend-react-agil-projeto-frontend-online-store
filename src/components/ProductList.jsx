@@ -8,7 +8,7 @@ import '../css/ProductList.css';
 
 class ProductList extends React.Component {
   render() {
-    const { products } = this.props;
+    const { products, addToCart } = this.props;
 
     return (
       <div className="products">
@@ -17,6 +17,9 @@ class ProductList extends React.Component {
             <ProductCard
               key={ product.id }
               product={ product }
+
+              addToCart={ addToCart }
+>
             />))
           : <ProductNotFound /> }
       </div>
@@ -28,6 +31,7 @@ ProductList.propTypes = {
   products: PropTypes.arrayOf(
     PropTypes.shape(),
   ).isRequired,
+  addToCart: PropTypes.func.isRequired,
 };
 
 export default ProductList;
