@@ -82,7 +82,7 @@ class Home extends React.Component {
 
   render() {
     const { searchStatus, products } = this.state;
-    const { handleChange, getProductsBySearch, getProductsByCategory } = this;
+    const { handleChange, getProductsBySearch, getProductsByCategory, addToCart } = this;
 
     return (
       <div className="store">
