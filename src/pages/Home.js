@@ -84,7 +84,6 @@ class Home extends React.Component {
     const { searchStatus, products } = this.state;
     const { handleChange, getProductsBySearch, getProductsByCategory } = this;
 
-
     return (
       <div className="store">
         <section className="left-content">
