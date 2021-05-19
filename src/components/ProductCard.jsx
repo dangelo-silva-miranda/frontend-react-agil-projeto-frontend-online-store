@@ -6,10 +6,16 @@ import '../css/ProductCard.css';
 
 class ProductCard extends React.Component {
   render() {
-    const { price, title, thumbnail } = this.props;
+    const { product: { price, title, thumbnail, id } } = this.props;
 
     return (
-      <Link to="/cart" className="product-card">
+      <Link
+        data-testid="product-detail-link"
+        to={ {
+          pathname: `/products/${id}/details`,
+          state: { title } } }
+        className="product-card"
+      >
         <div data-testid="product">
           <div className="product-title-section">
             <h2 className="product-title">{ title }</h2>

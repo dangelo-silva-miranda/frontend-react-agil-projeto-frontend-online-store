@@ -13,17 +13,10 @@ class ProductList extends React.Component {
     return (
       <div className="products">
         { products.length
-          ? products.map(({
-            id,
-            price,
-            title,
-            thumbnail,
-          }) => (
+          ? products.map((product) => (
             <ProductCard
-              key={ id }
-              price={ price }
-              title={ title }
-              thumbnail={ thumbnail }
+              key={ product.id }
+              product={ product }
             />))
           : <ProductNotFound /> }
       </div>
