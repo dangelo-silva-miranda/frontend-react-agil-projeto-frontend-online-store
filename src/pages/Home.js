@@ -51,30 +51,27 @@ class Home extends React.Component {
   }
 
   handleChange = ({ target: { name, value } }) => {
+    console.log('change');
     this.setState({
       [name]: value,
     });
   }
 
-  getCategory = (id) => {
-    this.setState({ category: id });
-    this.updateCategory();
-  }
-
-  updateCategory = async () => {
-    const { category } = this.state;
-    const { results } = await getProductsFromCategoryAndQuery(category);
+  getProductsByCategory = async (id) => {
+    const { results } = await getProductsFromCategoryAndQuery(id);
 
     this.setState({
       searchStatus: true,
       products: results,
+      category: id,
+      searchInput: '',
     });
   }
 
-  updateSearch = async (event) => {
+  getProductsBySearch = async (event) => {
     event.preventDefault();
 
-    const { category, searchInput } = this.state;
+    const { searchInput, category } = this.state;
     const { results } = await getProductsFromCategoryAndQuery(category, searchInput);
 
     this.setState({
@@ -85,18 +82,19 @@ class Home extends React.Component {
 
   render() {
     const { searchStatus, products } = this.state;
-    const { handleChange, updateSearch, getCategory, addToCart } = this;
+    const { handleChange, getProductsBySearch, getProductsByCategory } = this;
+
 
     return (
       <div className="store">
         <section className="left-content">
-          <Categories getCategory={ getCategory } />
+          <Categories getProductsByCategory={ getProductsByCategory } />
         </section>
         <section className="right-content">
           <div className="header">
             <SearchInput
               handleChange={ handleChange }
-              updateSearch={ updateSearch }
+              getProductsBySearch={ getProductsBySearch }
             />
             <CartButton />
           </div>
