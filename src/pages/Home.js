@@ -23,6 +23,10 @@ class Home extends React.Component {
     };
   }
 
+  componentDidMount() {
+    localStorage.setItem('cart', '[]');
+  }
+
   readCart = () => JSON.parse(localStorage.getItem('cart'));
 
   saveCart = (cart) => localStorage.setItem('cart', JSON.stringify(cart));
@@ -30,9 +34,20 @@ class Home extends React.Component {
   addToCart = async (id) => {
     const { products } = this.state;
 
-    const result = products.find((product) => product.id === id);
+    const cart = this.readCart();
+    console.log(cart);
+    const oldProduct = cart.find((product) => product.id === id);
 
-    this.saveCart([...this.readCart(), result]);
+    if (cart.length && oldProduct) {
+      const index = cart.indexOf(oldProduct);
+      oldProduct.quantity += 1;
+      cart[index] = oldProduct;
+      this.saveCart(cart);
+    } else {
+      const newProductToCart = products.find((product) => product.id === id);
+      newProductToCart.quantity = 1;
+      this.saveCart([...cart, newProductToCart]);
+    }
   }
 
   handleChange = ({ target: { name, value } }) => {

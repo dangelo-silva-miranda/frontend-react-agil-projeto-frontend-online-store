@@ -1,18 +1,42 @@
 import React from 'react';
-// import EmptyBox from '../img/empty-box.png';
+import PropTypes from 'prop-types';
+
+import CartItem from './CartItem';
 
 class CartProducts extends React.Component {
+  // constructor(props) {
+  //   super(props);
+
+  //   const { cart } = this.props;
+  // }
+
+  // teste = () => {
+  //   const { cart } = this.props;
+
+  //   cart.map((product) => (
+  //     <CartItem
+  //       key={ product.id }
+  //       product={ product }
+  //     />));
+  // }
+
   render() {
-    // const { cart } = this.props;
+    const { cart } = this.props;
 
     return (
       <div>
-        <p>Precisamos pegar apenas os produtos únicos</p>
-        <p>Depois vamos imprimir os produtos únicos</p>
-        <p>Depois vamos filtrar e pegar a quantidade de cada produto</p>
+        { cart.map((product) => (
+          <CartItem
+            key={ product.id }
+            product={ product }
+          />)) }
       </div>
     );
   }
 }
+
+CartProducts.propTypes = {
+  cart: PropTypes.arrayOf().isRequired,
+};
 
 export default CartProducts;

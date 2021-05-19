@@ -12,24 +12,11 @@ class Cart extends React.Component {
     super(props);
 
     this.state = {
-      cart: [],
+      cart: this.readCart(),
     };
   }
 
-  componentDidMount() {
-    this.updateCart();
-  }
-
   readCart = () => JSON.parse(localStorage.getItem('cart'));
-
-  updateCart = () => {
-    const cart = this.readCart();
-    console.log(cart);
-
-    this.setState({
-      cart,
-    });
-  }
 
   render() {
     const { cart } = this.state;
