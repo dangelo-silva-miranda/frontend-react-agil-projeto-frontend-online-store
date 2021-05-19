@@ -41,15 +41,15 @@ export async function getProductsFromCategory(category) {
   Material consultado sobre Promise.resolve
   https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve
  */
-export async function getProductsFromCategoryAndQuery(categoryId, query) {
+export async function getProductsFromCategoryAndQuery(categoryId = '', query = '') {
   if (categoryId === '') {
-    getProductsFromQuery(query);
+    console.log('quary');
+    return getProductsFromQuery(query);
+  } if (query === '') {
+    console.log('categoryId');
+    return getProductsFromCategory(categoryId);
   }
-
-  if (!query) {
-    getProductsFromCategory(categoryId);
-  }
-
+  console.log('else');
   const results = await fetchAPI(`https://api.mercadolibre.com/sites/MLB/search?category=${categoryId}&q=${query}`); // busca o resultado de uma Promise de consulta usando a api do mercado livre
 
   return Promise.resolve(results); // retorna uma promise com os dados de resultado

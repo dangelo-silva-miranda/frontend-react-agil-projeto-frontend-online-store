@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import '../css/Searchinput.css';
+import '../css/SearchInput.css';
 
 class SearchInput extends React.Component {
   render() {
-    const { handleChange, updateSearch } = this.props;
+    const { handleChange, getProductsBySearch } = this.props;
 
     return (
-      <form onSubmit={ updateSearch } method="get" className="search-bar">
+      <form onSubmit={ getProductsBySearch } method="get" className="search-bar">
         <input
           data-testid="query-input"
           onChange={ handleChange }
@@ -30,7 +30,7 @@ class SearchInput extends React.Component {
 
 SearchInput.propTypes = {
   handleChange: PropTypes.func,
-  updateSearch: PropTypes.func,
+  getProductsBySearch: PropTypes.func,
 }.isRequired;
 
 export default SearchInput;

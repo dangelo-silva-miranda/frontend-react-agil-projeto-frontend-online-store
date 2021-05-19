@@ -5,12 +5,12 @@ import PropTypes from 'prop-types';
 class Category extends Component {
   render() {
     const {
-      category: { name, id }, getCategory,
+      category: { name, id }, getProductsByCategory,
     } = this.props;
     return (
       <div>
         <button
-          onClick={ () => getCategory(id) }
+          onClick={ () => getProductsByCategory(id) }
           data-testid="category"
           type="button"
         >
@@ -23,7 +23,7 @@ class Category extends Component {
 
 Category.propTypes = {
   category: PropTypes.shape().isRequired,
-  getCategory: PropTypes.func.isRequired,
+  getProductsByCategory: PropTypes.func.isRequired,
 };
 
 export default Category;
