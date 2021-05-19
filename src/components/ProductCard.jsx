@@ -16,8 +16,9 @@ class ProductCard extends React.Component {
         <h3 className="product-price">
           R$
           {' '}
-          { price }
+          { price.toFixed(2) }
         </h3>
+        <button type="button">Adicionar ao Carrinho</button>
       </div>
     );
   }

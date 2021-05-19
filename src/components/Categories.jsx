@@ -28,12 +28,12 @@ class Categories extends Component {
 
   render() {
     const { categories } = this.state;
-    const { getCategory } = this.props;
+    const { getProductsByCategory } = this.props;
     return (
       <div>
         {categories.map((category) => (
           <Category
-            getCategory={ getCategory }
+            getProductsByCategory={ getProductsByCategory }
             key={ category.id }
             category={ category }
           />
@@ -44,7 +44,7 @@ class Categories extends Component {
 }
 
 Categories.propTypes = {
-  getCategory: PropTypes.func.isRequired,
+  getProductsByCategory: PropTypes.func.isRequired,
 };
 
 export default Categories;
