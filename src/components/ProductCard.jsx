@@ -18,7 +18,12 @@ class ProductCard extends React.Component {
           {' '}
           { price }
         </h3>
-        <button type="button" onClick={ () => addToCart(id) }>Adicionar ao Carrinho</button>
+        <button
+          type="button"
+          onClick={ () => addToCart(id) }
+        >
+          Adicionar ao Carrinho
+        </button>
       </div>
     );
   }

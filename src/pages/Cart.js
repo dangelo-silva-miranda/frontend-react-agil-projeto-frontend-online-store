@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import BackArrow from '../img/back-arrow.png';
-import EmptyBox from '../img/empty-box.png';
+import EmptyCart from '../components/EmptyCart';
 
 import '../css/Cart.css';
 
@@ -14,8 +14,7 @@ class Cart extends React.Component {
         <Link to="/">
           <img className="back-arrow-icon" src={ BackArrow } alt="" />
         </Link>
-        <img className="empty-box-icon" src={ EmptyBox } alt="" />
-        <h2 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h2>
+        <EmptyCart />
       </div>
     );
   }
