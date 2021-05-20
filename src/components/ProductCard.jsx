@@ -1,17 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import '../css/ProductCard.css';
 
 class ProductCard extends React.Component {
   render() {
-    const { product: { id, price, title, thumbnail }, addToCart } = this.props;
+    const {
+      product: {
+        id,
+        price,
+        title,
+        thumbnail,
+        attributes,
+        permalink },
+      addToCart } = this.props;
 
     return (
+
       <div data-testid="product" className="product-card">
         <div className="product-title-section">
           <h2 className="product-title">{ title }</h2>
         </div>
+
         <img className="product-img" src={ thumbnail } alt="Product" />
         <h3 className="product-price">
           R$
@@ -25,6 +36,19 @@ class ProductCard extends React.Component {
         >
           Adicionar ao Carrinho
         </button>
+
+        <Link
+          data-testid="product-detail-link"
+          to={ {
+            pathname: `/products/${id}/details`,
+            state: { title, price, thumbnail, attributes, permalink },
+          } }
+        >
+          <button type="button">
+            Detalhes
+          </button>
+        </Link>
+
       </div>
     );
   }

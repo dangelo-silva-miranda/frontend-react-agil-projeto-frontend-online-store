@@ -1,0 +1,12 @@
+.title-product {
+  font-size: 1.2rem;
+}
+
+.img-product {
+  width: 15%;
+}
+
+.list-attributes {
+  list-style-type: none;
+  padding: 0;
+}

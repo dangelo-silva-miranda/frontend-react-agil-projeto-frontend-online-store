@@ -11,7 +11,6 @@ const fetchAPI = async (url) => {
   const response = await fetch(url); // busca o resultado de uma Promise de consulta usando a api do mercado livre e uma url como parâmetro
   return response.json(); // retorna o objeto JSON resultado do sucesso de uma Promise do processamento da stream response
 };
-
 /*
   Essa função retorna uma lista das categorias disponíveis com seus respectivos ids
 
@@ -36,7 +35,6 @@ export async function getProductsFromCategory(category) {
 
   return Promise.resolve(results); // retorna uma promise com os dados de resultado
 }
-
 /*
   Essa função recebe o id de uma categoria e um termo e retorna uma lista de itens desta categoria e que tenham o termo informado
 
