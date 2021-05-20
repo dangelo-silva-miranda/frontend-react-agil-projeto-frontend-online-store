@@ -6,7 +6,15 @@ import '../css/ProductCard.css';
 
 class ProductCard extends React.Component {
   render() {
-    const { product: { id, price, title, thumbnail }, addToCart } = this.props;
+    const {
+      product: {
+        id,
+        price,
+        title,
+        thumbnail,
+        attributes,
+        permalink },
+      addToCart } = this.props;
 
     return (
 
@@ -33,8 +41,8 @@ class ProductCard extends React.Component {
           data-testid="product-detail-link"
           to={ {
             pathname: `/products/${id}/details`,
-            state: { title } } }
-
+            state: { title, price, thumbnail, attributes, permalink },
+          } }
         >
           <button type="button">
             Detalhes
