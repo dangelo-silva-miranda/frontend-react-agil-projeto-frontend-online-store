@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import BackArrow from '../img/back-arrow.png';
 
 import '../css/Details.css';
+import ProductRating from '../components/ProductRating';
 
 class Details extends Component {
   render() {
@@ -37,6 +38,7 @@ class Details extends Component {
         <Link to="/">
           <img className="back-arrow-icon" src={ BackArrow } alt="" />
         </Link>
+        <ProductRating />
       </div>
     );
   }
