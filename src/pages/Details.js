@@ -11,14 +11,21 @@ class Details extends Component {
   render() {
     const {
       location: {
-        state: {
+        data: {
           title,
           thumbnail,
           price,
           attributes,
           permalink,
+          addToCart,
         },
-      } } = this.props;
+      },
+      match: {
+        params: {
+          id,
+        },
+      },
+    } = this.props;
 
     return (
       <div>
@@ -33,11 +40,22 @@ class Details extends Component {
           )) }
         </ul>
         <h3>
-          <a href={ permalink } target="_blank" rel="noreferrer">Link ML</a>
+          {/*
+          Correção de rel="noreferrer" para rel="noopener noreferrer" de acordo com a sugestão do warning abaixo:
+          Line 36:33:  Using target="_blank" without rel="noopener noreferrer" is a security risk: see https://mathiasbynens.github.io/rel-noopener  react/jsx-no-target-blank
+          */}
+          <a href={ permalink } target="_blank" rel="noopener noreferrer">Link ML</a>
         </h3>
         <Link to="/">
           <img className="back-arrow-icon" src={ BackArrow } alt="" />
         </Link>
+        <button
+          data-testid="product-detail-add-to-cart"
+          type="button"
+          onClick={ () => addToCart(id) }
+        >
+          Adicionar ao Carrinho
+        </button>
         <ProductRating />
       </div>
     );
@@ -45,8 +63,23 @@ class Details extends Component {
 }
 
 Details.propTypes = {
-  match: PropTypes.shape().isRequired,
-  params: PropTypes.string.isRequired,
+  location: PropTypes.shape({
+    data: PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      thumbnail: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+      attributes: PropTypes.arrayOf(
+        PropTypes.shape().isRequired,
+      ).isRequired,
+      permalink: PropTypes.string.isRequired,
+      addToCart: PropTypes.func.isRequired,
+    }).isRequired,
+  }).isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
 }.isRequired;
 
 export default Details;

@@ -31,11 +31,11 @@ class Home extends React.Component {
 
   saveCart = (cart) => localStorage.setItem('cart', JSON.stringify(cart));
 
-  addToCart = async (id) => {
+  addToCart = (id) => {
     const { products } = this.state;
 
     const cart = this.readCart();
-    console.log(cart);
+    // console.log(cart);
     const oldProduct = cart.find((product) => product.id === id);
 
     if (cart.length && oldProduct) {
@@ -48,10 +48,11 @@ class Home extends React.Component {
       newProductToCart.quantity = 1;
       this.saveCart([...cart, newProductToCart]);
     }
+    // console.log(cart);
   }
 
   handleChange = ({ target: { name, value } }) => {
-    console.log('change');
+    // console.log('change');
     this.setState({
       [name]: value,
     });
