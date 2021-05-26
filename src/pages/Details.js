@@ -8,6 +8,25 @@ import '../css/Details.css';
 import ProductRating from '../components/ProductRating';
 
 class Details extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      quantity: 1,
+    };
+  }
+
+  /*
+    Material consultado sobre incremento/decremento quantidade em uma lista de compras
+    Fonte:https://cibersistemas.pt/tecnologia/como-construir-uma-lista-de-compras-usando-os-ganchos-react-c-codigo-inicial-e-passo-a-passo-em-video/
+   */
+  handleQuantityIncrease = () => {
+    const { quantity } = this.state;
+    this.setState({
+      quantity: quantity + 1,
+    });
+  }
+
   render() {
     const {
       location: {
@@ -49,6 +68,16 @@ class Details extends Component {
         <Link to="/">
           <img className="back-arrow-icon" src={ BackArrow } alt="" />
         </Link>
+        <section>
+          <h2>Quantidade</h2>
+          <button
+            type="button"
+            onClick={ () => this.handleQuantityIncrease() }
+          >
+            +
+          </button>
+        </section>
+
         <button
           data-testid="product-detail-add-to-cart"
           type="button"
