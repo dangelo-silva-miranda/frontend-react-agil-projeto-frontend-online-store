@@ -23,6 +23,12 @@ function App() {
           />
           <Route path="/cart" component={ Cart } />
           <Route path="/products/:id/details" component={ Details } />
+          {/* <Route
+            path="/products/:id/details"
+            render={
+              (props) => (<Details { ...props } />)
+            }
+          /> */}
         </Switch>
       </div>
     </BrowserRouter>

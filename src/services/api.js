@@ -43,13 +43,13 @@ export async function getProductsFromCategory(category) {
  */
 export async function getProductsFromCategoryAndQuery(categoryId = '', query = '') {
   if (categoryId === '') {
-    console.log('quary');
+    // console.log('quary');
     return getProductsFromQuery(query);
   } if (query === '') {
-    console.log('categoryId');
+    // console.log('categoryId');
     return getProductsFromCategory(categoryId);
   }
-  console.log('else');
+  // console.log('else');
   const results = await fetchAPI(`https://api.mercadolibre.com/sites/MLB/search?category=${categoryId}&q=${query}`); // busca o resultado de uma Promise de consulta usando a api do mercado livre
 
   return Promise.resolve(results); // retorna uma promise com os dados de resultado

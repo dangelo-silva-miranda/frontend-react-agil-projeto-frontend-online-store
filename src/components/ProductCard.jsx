@@ -13,8 +13,10 @@ class ProductCard extends React.Component {
         title,
         thumbnail,
         attributes,
-        permalink },
-      addToCart } = this.props;
+        permalink,
+      },
+      addToCart,
+    } = this.props;
 
     return (
 
@@ -41,23 +43,37 @@ class ProductCard extends React.Component {
           data-testid="product-detail-link"
           to={ {
             pathname: `/products/${id}/details`,
-            state: { title, price, thumbnail, attributes, permalink },
+            data: {
+              title,
+              price,
+              thumbnail,
+              attributes,
+              permalink,
+              addToCart,
+            },
           } }
         >
           <button type="button">
             Detalhes
           </button>
         </Link>
-
       </div>
     );
   }
 }
 
 ProductCard.propTypes = {
-  price: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  thumbnail: PropTypes.string.isRequired,
+  product: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    thumbnail: PropTypes.string.isRequired,
+    attributes: PropTypes.arrayOf(
+      PropTypes.shape().isRequired,
+    ).isRequired,
+    permalink: PropTypes.string.isRequired,
+  }).isRequired,
+  addToCart: PropTypes.func.isRequired,
 }.isRequired;
 
 export default ProductCard;

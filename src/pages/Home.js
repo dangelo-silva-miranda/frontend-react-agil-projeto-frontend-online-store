@@ -23,35 +23,46 @@ class Home extends React.Component {
     };
   }
 
+  /*
+  Removido pois limpava o carrinho toda vez que voltada para Home.
+  Precisa criar botão LIMPAR CARRINHO na página do Carrinho
   componentDidMount() {
     localStorage.setItem('cart', '[]');
   }
+  */
 
-  readCart = () => JSON.parse(localStorage.getItem('cart'));
+  /// Migrar readCart e saveCart para services//////////////////
+  readCart = () => {
+    const cart = JSON.parse(localStorage.getItem('cart'));
+    return (cart) || [];
+  }
 
   saveCart = (cart) => localStorage.setItem('cart', JSON.stringify(cart));
 
-  addToCart = async (id) => {
+  /// Migrar readCart e saveCart para services//////////////////
+
+  addToCart = (id, quantity = 1) => {
     const { products } = this.state;
 
     const cart = this.readCart();
-    console.log(cart);
+    // console.log(cart);
     const oldProduct = cart.find((product) => product.id === id);
 
     if (cart.length && oldProduct) {
       const index = cart.indexOf(oldProduct);
-      oldProduct.quantity += 1;
+      oldProduct.quantity += quantity;
       cart[index] = oldProduct;
       this.saveCart(cart);
     } else {
       const newProductToCart = products.find((product) => product.id === id);
-      newProductToCart.quantity = 1;
+      newProductToCart.quantity = quantity;
       this.saveCart([...cart, newProductToCart]);
     }
+    // console.log(cart);
   }
 
   handleChange = ({ target: { name, value } }) => {
-    console.log('change');
+    // console.log('change');
     this.setState({
       [name]: value,
     });
