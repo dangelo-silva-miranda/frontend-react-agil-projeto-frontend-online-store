@@ -76,60 +76,57 @@ class Details extends Component {
               <CartButton />
             </div>
           </section>
-        <div>
-          <h1
-            data-testid="product-detail-name"
-            className="title-product"
-          >
-            {` ${title}`}
-          </h1>
-          <img src={ thumbnail } alt="Thumbnail Product" className="img-product" />
-          <h2>{`R$ ${price.toFixed(2)}`}</h2>
-          <ul className="list-attributes">
-            { attributes.map((attribute) => (
-              <li key={ attribute.id }>
-                {`${attribute.name}: ${attribute.value_name}`}
-              </li>
-            )) }
-          </ul>
-          <h3>
-            {/*
+          <div>
+            <h1
+              data-testid="product-detail-name"
+              className="title-product"
+            >
+              {` ${title}`}
+            </h1>
+            <img src={ thumbnail } alt="Thumbnail Product" className="img-product" />
+            <h2>{`R$ ${price.toFixed(2)}`}</h2>
+            <ul className="list-attributes">
+              { attributes.map((attribute) => (
+                <li key={ attribute.id }>
+                  {`${attribute.name}: ${attribute.value_name}`}
+                </li>
+              )) }
+            </ul>
+            <h3>
+              {/*
           Correção de rel="noreferrer" para rel="noopener noreferrer" de acordo com a sugestão do warning abaixo:
           Line 36:33:  Using target="_blank" without rel="noopener noreferrer" is a security risk: see https://mathiasbynens.github.io/rel-noopener  react/jsx-no-target-blank
           */}
-            <a href={ permalink } target="_blank" rel="noopener noreferrer">Link ML</a>
-          </h3>
-          <Link to="/">
-            <img className="back-arrow-icon" src={ BackArrow } alt="" />
-          </Link>
-          <section>
-            <h2>Quantidade</h2>
-            <button
-              type="button"
-              onClick={ () => this.handleQuantityDecrease() }
-            >
-              -
-            </button>
+              <a href={ permalink } target="_blank" rel="noopener noreferrer">Link ML</a>
+            </h3>
+            <section>
+              <h2>Quantidade</h2>
+              <button
+                type="button"
+                onClick={ () => this.handleQuantityDecrease() }
+              >
+                -
+              </button>
               <span>
                 {quantity}
               </span>
-            <button
-              type="button"
-              onClick={ () => this.handleQuantityIncrease() }
-            >
-              +
-            </button>
-          </section>
+              <button
+                type="button"
+                onClick={ () => this.handleQuantityIncrease() }
+              >
+                +
+              </button>
+            </section>
 
-          <button
-            data-testid="product-detail-add-to-cart"
-            type="button"
-            onClick={ () => addToCart(id) }
-          >
-            Adicionar ao Carrinho
-          </button>
-          <ProductRating />
-        </div>
+            <button
+              data-testid="product-detail-add-to-cart"
+              type="button"
+              onClick={ () => addToCart(id, quantity) }
+            >
+              Adicionar ao Carrinho
+            </button>
+            <ProductRating />
+          </div>
         </main>
       );
     }

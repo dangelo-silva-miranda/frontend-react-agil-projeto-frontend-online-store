@@ -31,7 +31,7 @@ class Home extends React.Component {
 
   saveCart = (cart) => localStorage.setItem('cart', JSON.stringify(cart));
 
-  addToCart = (id) => {
+  addToCart = (id, quantity = 1) => {
     const { products } = this.state;
 
     const cart = this.readCart();
@@ -40,12 +40,12 @@ class Home extends React.Component {
 
     if (cart.length && oldProduct) {
       const index = cart.indexOf(oldProduct);
-      oldProduct.quantity += 1;
+      oldProduct.quantity += quantity;
       cart[index] = oldProduct;
       this.saveCart(cart);
     } else {
       const newProductToCart = products.find((product) => product.id === id);
-      newProductToCart.quantity = 1;
+      newProductToCart.quantity = quantity;
       this.saveCart([...cart, newProductToCart]);
     }
     // console.log(cart);
