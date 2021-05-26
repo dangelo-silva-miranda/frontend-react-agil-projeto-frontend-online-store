@@ -31,12 +31,15 @@ class Home extends React.Component {
   }
   */
 
+  /// Migrar readCart e saveCart para services//////////////////
   readCart = () => {
     const cart = JSON.parse(localStorage.getItem('cart'));
     return (cart) || [];
   }
 
   saveCart = (cart) => localStorage.setItem('cart', JSON.stringify(cart));
+
+  /// Migrar readCart e saveCart para services//////////////////
 
   addToCart = (id, quantity = 1) => {
     const { products } = this.state;

@@ -16,7 +16,10 @@ class Cart extends React.Component {
     };
   }
 
-  readCart = () => JSON.parse(localStorage.getItem('cart'));
+  readCart = () => {
+    const cart = JSON.parse(localStorage.getItem('cart'));
+    return (cart) || [];
+  }
 
   render() {
     const { cart } = this.state;
