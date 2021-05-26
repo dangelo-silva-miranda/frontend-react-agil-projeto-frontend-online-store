@@ -6,6 +6,7 @@ import BackArrow from '../img/back-arrow.png';
 
 import '../css/Details.css';
 import ProductRating from '../components/ProductRating';
+import CartButton from '../components/CartButton';
 
 class Details extends Component {
   constructor(props) {
@@ -64,6 +65,17 @@ class Details extends Component {
       } = this.props;
 
       return (
+        <main>
+          <section className="header">
+            <div className="left-header">
+              <Link to="/">
+                <img className="back-arrow-icon" src={ BackArrow } alt="" />
+              </Link>
+            </div>
+            <div className="right-header">
+              <CartButton />
+            </div>
+          </section>
         <div>
           <h1
             data-testid="product-detail-name"
@@ -118,6 +130,7 @@ class Details extends Component {
           </button>
           <ProductRating />
         </div>
+        </main>
       );
     }
 }
