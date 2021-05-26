@@ -44,6 +44,7 @@ class Details extends Component {
     }
 
     render() {
+      const { quantity } = this.state;
       const {
         location: {
           data: {
@@ -97,6 +98,9 @@ class Details extends Component {
             >
               -
             </button>
+              <span>
+                {quantity}
+              </span>
             <button
               type="button"
               onClick={ () => this.handleQuantityIncrease() }
