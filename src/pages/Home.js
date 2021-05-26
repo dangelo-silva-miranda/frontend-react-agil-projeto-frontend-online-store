@@ -23,11 +23,18 @@ class Home extends React.Component {
     };
   }
 
+  /*
+  Removido pois limpava o carrinho toda vez que voltada para Home.
+  Precisa criar botão LIMPAR CARRINHO na página do Carrinho
   componentDidMount() {
     localStorage.setItem('cart', '[]');
   }
+  */
 
-  readCart = () => JSON.parse(localStorage.getItem('cart'));
+  readCart = () => {
+    const cart = JSON.parse(localStorage.getItem('cart'));
+    return (cart) || [];
+  }
 
   saveCart = (cart) => localStorage.setItem('cart', JSON.stringify(cart));
 
